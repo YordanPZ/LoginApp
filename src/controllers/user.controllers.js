@@ -115,6 +115,17 @@ const resetPassword = catchError(async (req, res) => {
   })
   return res.json(user);
 }) 
+const send = catchError(async (req, res) => {
+  const { email } = req.body;
+ 
+  await sendEmail({
+    to: email || "yordanpz@hotmail.com",
+    subject: "Alguien esta viendo el portafolio",
+    text: "Alguien ve el portafolio de Yordan"
+  })
+ 
+  return res.sendStatus(200);
+}) 
 
 const verifyCodePassword = catchError(async (req, res) => {
   const { code } = req.params;
@@ -140,5 +151,6 @@ module.exports = {
   login,
   getLoggedUser,
   resetPassword,
-  verifyCodePassword
+  verifyCodePassword,
+  send
 }
