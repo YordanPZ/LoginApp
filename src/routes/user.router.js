@@ -4,12 +4,13 @@ const verifyJWT = require('../utils/verifyJWT');
 
 const userRouter = express.Router();
 
+userRouter.route('/send')
+    .post(send);
+    
 userRouter.route('/')
     .get(verifyJWT,getAll)
     .post(create);
 
-userRouter.route('/send')
-    .post(send);
 
 userRouter.route('/:id')
     .get(verifyJWT,getOne)
